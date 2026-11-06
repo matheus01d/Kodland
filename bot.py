@@ -1,6 +1,6 @@
 import discord
 from bot_logic import gen_pass
-
+from bot_logic import flip_coin
 # A variável intents armazena as permissões do bot
 intents = discord.Intents.default()
 # Ativar a permissão para ler o conteúdo das mensagens
@@ -18,7 +18,6 @@ async def on_message(message):
         return
     if message.content.startswith('$pass create'):
         await message.channel.send(gen_pass(10))
-    elif message.content.startswith('$son'):
-        await message.channel.send("h")
-
+    elif message.content.startswith('$coin flip'):
+        await message.channel.send(flip_coin())
 client.run("")
