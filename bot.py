@@ -45,7 +45,7 @@ async def meme(ctx):
     pasta_images = os.path.join(pasta_bot, "images")
     
     # Colchetes [] criam uma lista para o random.choice funcionar
-    meme_random = random.choice(["mem1.jpg", "mem2.jpg", "mem3.jpg"])
+    meme_random = random.choice(["mem4.jpg","mem1.jpg", "mem2.jpg", "mem3.jpg"])
     
     # Sem aspas em meme_random para usar o valor sorteado da variável
     caminho_imagem = os.path.join(pasta_images, meme_random)
@@ -61,10 +61,30 @@ def get_duck_image_url():
     return data['url']
 
 
-@bot.command('duck')
+@bot.hybrid_command()
 async def duck(ctx):
     '''Uma vez que chamamos o comando duck, o programa chama a função get_duck_image_url '''
     image_url = get_duck_image_url()
     await ctx.send(image_url)
+
+@bot.hybrid_command()
+async def meme_animal(ctx):
+    await ctx.defer()
+
+    # Pega o caminho exato da pasta onde este script .py está salvo
+    pasta_bot = os.path.dirname(os.path.abspath(__file__))
+    pasta_images = os.path.join(pasta_bot, "images")
+    
+    # Colchetes [] criam uma lista para o random.choice funcionar
+    meme_random = random.choice(["anm4.jpg","anm1.jpg", "anm2.jpg", "anm3.jpg","anm5.jpg"])
+    
+    # Sem aspas em meme_random para usar o valor sorteado da variável
+    caminho_imagem = os.path.join(pasta_images, meme_random)
+
+    with open(caminho_imagem, "rb") as f:
+        picture = discord.File(f)
+        await ctx.send(file=picture)
+
+
 
 bot.run("TOKEN")
