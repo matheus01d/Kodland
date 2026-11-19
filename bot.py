@@ -68,6 +68,3 @@ async def duck(ctx):
     await ctx.send(image_url)
 
 bot.run("TOKEN")
-
-
-bot.run("TOKEN")
